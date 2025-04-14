@@ -1,16 +1,16 @@
 const hre = require("hardhat");
 
 async function main() {
-  const Filecoin = await hre.ethers.getContractFactory("Filecoin");
-  const filecoin = await Filecoin.deploy();
-  
+  const Todo = await hre.ethers.getContractFactory("Todo");
+  const todo = await Todo.deploy({
+    gasLimit: 8000000 // Increase gas limit
+  });
+
   // Wait for the contract to be deployed
-  await filecoin.waitForDeployment();
-  
-  
-  const filecoinAddress = await filecoin.getAddress();
-  
-  console.log("Counter deployed to:", filecoinAddress);
+  await todo.waitForDeployment();
+
+  const todoAddress = await todo.getAddress();
+  console.log("Todo deployed to:", todoAddress);
 }
 
 main().catch((error) => {
